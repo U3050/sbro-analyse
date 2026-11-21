@@ -1,0 +1,31 @@
+<!DOCTYPE html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#486950"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="SBro Analyse"><meta name="description" content="Dein Depot, Elliott-Szenarien, Watchlist und Marktbeobachtung – SBro Analyse."><meta name="robots" content="noindex,nofollow"><link rel="manifest" href="./manifest.webmanifest"><link rel="apple-touch-icon" href="./icons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png"><title>SBro Analyse · Investment Intelligence</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<div class="app-shell">
+<aside class="sidebar" id="sidebar">
+  <div class="brand" aria-label="SBro Analyse"><div class="brand-mark" aria-hidden="true"><svg width="35" height="35" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="28.5" cy="12" r="5" fill="currentColor" opacity=".85"/><path d="M5 29C11 29 13 19 20 19C25 19 27 25 35 18" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M5 34H35" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".45"/></svg></div><div class="brand-type"><strong>SBro<span> Analyse</span></strong><small>DEIN MARKTBLICK</small></div></div>
+  <div class="side-label">DEIN BEREICH</div>
+  <nav class="side-nav" id="main-nav" aria-label="Hauptnavigation">
+    <button class="nav-item active" data-page="overview"><span class="nav-icon">◫</span> Übersicht</button>
+    <button class="nav-item" data-page="portfolio"><span class="nav-icon">▥</span> Mein Depot</button>
+    <button class="nav-item" data-page="watchlist"><span class="nav-icon">◎</span> Watchlist</button>
+    <button class="nav-item" data-page="analyse"><span class="nav-icon">⌁</span> Elliott-Analyse</button>
+    <button class="nav-item" data-page="ai"><span class="nav-icon">✧</span> KI & Risiken</button>
+    <button class="nav-item" data-page="metals"><span class="nav-icon">◈</span> Edelmetalle</button>
+    <button class="nav-item" data-page="crypto"><span class="nav-icon">₿</span> Bitcoin & Coins</button>
+    <button class="nav-item" data-page="screener"><span class="nav-icon">◇</span> Markt-Screener</button><button class="nav-item" data-page="briefing"><span class="nav-icon">☼</span> Morgenbriefing</button>
+    <button class="nav-item" data-page="alerts"><span class="nav-icon">♧</span> Kursalarme <span class="nav-count" id="alert-count">0</span></button>
+  </nav>
+  <div class="side-label side-label-tools">EINSTELLUNGEN</div>
+  <nav class="side-nav"><button class="nav-item" data-page="settings"><span class="nav-icon">⚙</span> Datenquellen</button></nav>
+  <div class="sidebar-spacer"></div>
+  <div class="sidebar-card"><div class="sb-overline">DATENSTATUS</div><div id="side-status" class="side-status"><span class="dot amber"></span> Simulationsmodus</div><p>Nur mit Datenanbieter werden echte Börsenkurse geladen.</p><button class="text-btn" data-page="settings">Jetzt verbinden <span>↗</span></button></div>
+  <div class="side-foot">SBro Analyse <span>v0.6 · Web-App</span></div>
+</aside>
+<main class="main">
+ <header class="topbar"><button class="mobile-menu" id="mobile-menu" aria-label="Menü öffnen">☰</button><div class="breadcrumb">DEIN FINANZÜBERBLICK <span>/</span> <strong id="breadcrumb-label">Übersicht</strong></div><div class="top-actions"><div class="source-pill" id="source-pill"><span class="dot amber"></span> Demo / Offline</div><button class="btn btn-small btn-ghost pwa-install" id="install-pwa" type="button" aria-label="SBro als App installieren">Installieren</button><button class="icon-btn" id="refresh-btn" title="Kursdaten aktualisieren" aria-label="Kursdaten aktualisieren">↻</button><button class="btn btn-primary btn-small" id="global-add">+ Kauf erfassen</button></div></header>
+ <div class="content" id="content" aria-live="polite"></div>
+</main>
+</div>
+<div class="toast-stack" id="toasts" aria-live="polite"></div>
+<div class="modal-backdrop hidden" id="modal-backdrop" role="presentation"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><h2 id="modal-title">Neue Transaktion</h2><button class="icon-btn" id="modal-close" aria-label="Schließen">✕</button></div><div id="modal-body"></div></div></div>
+<script src="app.js"></script><script src="pwa.js" defer></script></body></html>
