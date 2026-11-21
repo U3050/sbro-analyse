@@ -1,5 +1,5 @@
-/* SBro PWA v0.6 – caches only the public app shell, never financial API responses. */
-const CACHE = 'sbro-pwa-shell-v06';
+/* SBro PWA v0.8 – caches only the public app shell, never financial API responses. */
+const CACHE = 'sbro-pwa-shell-v08';
 const PREFIX = 'sbro-pwa-shell-';
 const SHELL = ['./', './index.html', './styles.css', './app.js', './pwa.js', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png'];
 self.addEventListener('install', event => {
@@ -18,5 +18,5 @@ self.addEventListener('fetch', event => {
   }
   const staticFiles = ['/index.html','/styles.css','/app.js','/pwa.js','/manifest.webmanifest','/icons/icon-192.png','/icons/icon-512.png','/icons/apple-touch-icon.png'];
   if (!staticFiles.some(path => url.pathname.endsWith(path))) return;
-  event.respondWith(caches.match(request).then(cached => cached || fetch(request)));
+  event.respondWith(fetch(request).then(response=>{if(response.ok){const copy=response.clone();caches.open(CACHE).then(c=>c.put(request,copy));}return response;}).catch(()=>caches.match(request)));
 });
