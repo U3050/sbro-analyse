@@ -1,5 +1,5 @@
-/* SBro PWA v1.3 – caches only the public app shell, never financial API responses. */
-const CACHE = 'sbro-pwa-shell-v130';
+/* SBro PWA v1.3.1 – caches only the public app shell, never financial API responses. */
+const CACHE = 'sbro-pwa-shell-v131';
 const PREFIX = 'sbro-pwa-shell-';
 const SHELL = ['./', './index.html', './styles.css', './app.js', './pwa.js', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png'];
 self.addEventListener('install', event => {
