@@ -1,4 +1,4 @@
-/* SBro PWA v1.4.1 – caches only the public app shell, never financial API responses. */
+/* SBro PWA v1.4.1.1 – caches only the public app shell, never financial API responses. */
 const CACHE = 'sbro-pwa-shell-v141';
 const PREFIX = 'sbro-pwa-shell-';
 const SHELL = ['./', './index.html', './styles.css', './app.js', './pwa.js', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png'];
