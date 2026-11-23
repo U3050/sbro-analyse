@@ -1,7 +1,7 @@
-/* SBro PWA v1.6 – caches only the public app shell, never financial API responses. */
-const CACHE = 'sbro-pwa-shell-v160';
+/* SBro PWA v1.7 – encrypted local vault – caches only the public app shell, never financial API responses. */
+const CACHE = 'sbro-pwa-shell-v170';
 const PREFIX = 'sbro-pwa-shell-';
-const SHELL = ['./', './index.html', './styles.css', './app.js', './pwa.js', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png'];
+const SHELL = ['./', './index.html', './styles.css', './app.js', './vault.js', './pwa.js', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting()));
 });
@@ -16,7 +16,7 @@ self.addEventListener('fetch', event => {
     event.respondWith(fetch(request).then(response => response.ok ? response : Promise.reject(Error('Navigation fehlgeschlagen'))).catch(() => caches.match('./index.html')));
     return;
   }
-  const staticFiles = ['/index.html','/styles.css','/app.js','/pwa.js','/manifest.webmanifest','/icons/icon-192.png','/icons/icon-512.png','/icons/apple-touch-icon.png'];
+  const staticFiles = ['/index.html','/styles.css','/app.js','/vault.js','/pwa.js','/manifest.webmanifest','/icons/icon-192.png','/icons/icon-512.png','/icons/apple-touch-icon.png'];
   if (!staticFiles.some(path => url.pathname.endsWith(path))) return;
   event.respondWith(fetch(request).then(response=>{if(response.ok){const copy=response.clone();caches.open(CACHE).then(c=>c.put(request,copy));}return response;}).catch(()=>caches.match(request)));
 });
