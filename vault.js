@@ -95,5 +95,28 @@
       else if(hiddenSince&&unlocked&&Date.now()-hiddenSince>60*1000)lock();
     });
   }
-  window.SBroVault={configure,hasVault,enabled,isLocked,save,setup:()=>{if(!hasVault())dialog('setup');},lock};
+  function exportEncrypted(){
+    if(!hasVault()||!unlocked)return;
+    saving.catch(()=>{}).then(()=>{
+      const blob=new Blob([localStorage.getItem(STORE)],{type:'application/json'});
+      const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='SBro_Tresor_verschluesselt_'+new Date().toISOString().slice(0,10)+'.json';
+      document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),3000);
+    });
+  }
+  function importEncrypted(){
+    const file=document.createElement('input');file.type='file';file.accept='.json,application/json';
+    file.addEventListener('change',async()=>{
+      if(!file.files?.[0])return;
+      try{
+        const data=JSON.parse(await file.files[0].text());
+        if(data.v!==1||data.kdf!=='PBKDF2-SHA256'||data.iterations!==rounds||!data.salt||!data.iv||!data.ciphertext)throw Error('Keine gültige SBro-Tresordatei.');
+        for(const item of [data.salt,data.iv,data.ciphertext])fromB64(item);
+        if(!confirm('Achtung: Dieses verschlüsselte Backup ersetzt die gespeicherten Depotdaten dieses Geräts. Du benötigst das Passwort des Backups. Fortfahren?'))return;
+        localStorage.setItem(STORE,JSON.stringify(data));
+        localStorage.removeItem(LEGACY);localStorage.removeItem(LEGACY_API);
+        location.reload();
+      }catch(e){alert('Import fehlgeschlagen: '+e.message);}
+    });file.click();
+  }
+  window.SBroVault={configure,hasVault,enabled,isLocked,save,setup:()=>{if(!hasVault())dialog('setup');},lock,exportEncrypted,importEncrypted};
 })();
