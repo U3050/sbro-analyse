@@ -1,5 +1,5 @@
-/* SBro PWA v1.7 – encrypted local vault – caches only the public app shell, never financial API responses. */
-const CACHE = 'sbro-pwa-shell-v170';
+/* SBro PWA v1.7.1 – reduced Twelve Data request load. */
+const CACHE = 'sbro-pwa-shell-v171';
 const PREFIX = 'sbro-pwa-shell-';
 const SHELL = ['./', './index.html', './styles.css', './app.js', './vault.js', './pwa.js', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png'];
 self.addEventListener('install', event => {
